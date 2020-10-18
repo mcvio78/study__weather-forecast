@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "node-sass": "^4.14.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3"
@@ -14,10 +15,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "eject": "react-scripts eject",
+    "lint:check": "eslint \"src/**/*.{js,jsx}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx}\"",
+    "stylelint:check": "stylelint \"src/**/*.scss\"",
+    "stylelint:format": "stylelint --fix \"src/**/*.scss\"",
+    "prettier:check": "prettier --check \"**/**/*.{js,jsx,json,scss,md}\"",
+    "prettier:format": "prettier --write src/**/*.{js,jsx,scss}\"",
+    "check-eslint-config": "eslint --print-config ./.eslintrc.js | eslint-config-prettier-check",
+    "check-stylelint-config": "stylelint-config-prettier-check",
+    "check-code": "eslint \"src/**/*.{js,jsx}\" && stylelint \"src/**/*.scss\" && prettier --check \"src/**/*.{js,jsx,scss}\""
   },
   "browserslist": {
     "production": [
@@ -30,5 +37,20 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-cli": "^1.1.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.4",
+    "husky": "^4.3.0",
+    "install": "^0.13.0",
+    "lint-staged": "^10.4.2",
+    "npm": "^6.14.8",
+    "prettier": "^2.1.2",
+    "stylelint": "^13.7.2",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-prettier": "^1.1.2"
   }
 }
