@@ -1,0 +1,44 @@
+@import "./src/scss/variables/colors";
+
+.Input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.Label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.InputElement {
+  outline: none;
+  border: 2px solid $primary-text;
+  background-color: $primary-color;
+  font: inherit;
+  padding: 6px 10px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align-last: center;
+
+  &:focus {
+    outline: none;
+    background-color: $primary-color;
+  }
+}
+
+.Invalid {
+  border: 3px solid $error-primary;
+  background-color: $error-secondary;
+}
+
+.ValidationError {
+  color: $error-primary;
+  margin: 5px 0;
+
+  span {
+    text-transform: capitalize;
+  }
+}

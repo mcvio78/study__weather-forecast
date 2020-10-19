@@ -1,0 +1,9 @@
+@import "./src/scss/variables/colors";
+
+.Header {
+  max-width: 500px;
+  padding: 5px 0;
+  text-align: center;
+  box-shadow: 0 2px 3px $secondary-text;
+  margin: 20px auto;
+}
