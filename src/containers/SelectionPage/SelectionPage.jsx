@@ -4,6 +4,7 @@ import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import Header from "../../components/UI/Header/Header";
 import SelectCityForm from "../../components/SelectCityForm/SelectCityForm";
 import { checkValidity } from "../../shared/utility";
+import axiosForecast from "../../request-worker/axios-forecast";
 
 const SelectionPage = () => {
   const [selectionState, setSelectionState] = useState({
@@ -57,6 +58,16 @@ const SelectionPage = () => {
     Object.keys(selectionState).forEach((selectionField) => {
       formData[selectionField] = selectionState[selectionField].value;
     });
+
+    axiosForecast
+      .get("", {
+        params: {
+          q: selectionState.city.value,
+          lang: selectionState.language.value,
+        },
+      })
+      .then(() => {})
+      .catch(() => {});
   };
 
   return (
