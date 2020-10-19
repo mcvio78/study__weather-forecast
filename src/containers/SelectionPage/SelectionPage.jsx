@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import Header from "../../components/UI/Header/Header";
 import SelectCityForm from "../../components/SelectCityForm/SelectCityForm";
 import { checkValidity } from "../../shared/utility";
 import axiosForecast from "../../request-worker/axios-forecast";
+import * as actionCreators from "../../store/actions/forecast";
 
-const SelectionPage = () => {
+const SelectionPage = (props) => {
   const [selectionState, setSelectionState] = useState({
     city: {
       elType: "input",
@@ -59,6 +61,8 @@ const SelectionPage = () => {
       formData[selectionField] = selectionState[selectionField].value;
     });
 
+    props.onFetchForecast(formData);
+
     axiosForecast
       .get("", {
         params: {
@@ -83,4 +87,10 @@ const SelectionPage = () => {
   );
 };
 
-export default SelectionPage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFetchForecast: (formDataObj) => dispatch(actionCreators.fetchForecast(formDataObj)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SelectionPage);

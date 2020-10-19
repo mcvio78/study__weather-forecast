@@ -18,6 +18,7 @@ module.exports = {
         semi: true,
       },
     ],
+    "import/no-unresolved": 0,
   },
   ignorePatterns: ["node_modules", "build/*", "src/serviceWorker.js"],
 };
