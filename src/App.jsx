@@ -1,16 +1,16 @@
 import React from "react";
 
-import classes from "./App.module.scss";
 import Layout from "./hoc/Layout/Layout";
+import SelectionPage from "./containers/SelectionPage/SelectionPage";
 
-function App() {
+const App = () => {
   return (
-    <div className={classes.App}>
+    <div>
       <Layout>
-        <h1>This is a test.</h1>
+        <SelectionPage />
       </Layout>
     </div>
   );
-}
+};
 
 export default App;
