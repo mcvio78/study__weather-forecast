@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axiosForecast from "../../request-worker/axios-forecast";
 
-const fetchInit = () => {
+export const fetchInit = () => {
   return {
     type: actionTypes.FETCH_FORECAST_INIT,
   };
@@ -30,6 +30,7 @@ export const fetchForecast = (formDataObj) => {
         params: {
           q: formDataObj.city,
           lang: formDataObj.language,
+          units: "metric",
         },
       })
       .then((res) => {

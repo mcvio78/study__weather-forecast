@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import Header from "../../components/UI/Header/Header";
@@ -8,6 +9,8 @@ import { checkValidity } from "../../shared/utility";
 import * as actionCreators from "../../store/actions/forecast";
 
 const SelectionPage = (props) => {
+  const { st } = props;
+
   const [selectionState, setSelectionState] = useState({
     city: {
       elType: "input",
@@ -63,6 +66,8 @@ const SelectionPage = (props) => {
     props.onFetchForecast(formData);
   };
 
+  const redirect = st.cod === "200" ? <Redirect to="/forecast" /> : null;
+
   return (
     <Auxiliary>
       <Header>Select Your City</Header>
@@ -72,8 +77,15 @@ const SelectionPage = (props) => {
         requestForecast={requestForecastHandler}
         cityFieldIsValid={selectionState.city.valid}
       />
+      {redirect}
     </Auxiliary>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    st: state,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -82,4 +94,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SelectionPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectionPage);

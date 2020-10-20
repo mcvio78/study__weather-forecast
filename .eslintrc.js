@@ -21,4 +21,9 @@ module.exports = {
     "import/no-unresolved": 0,
   },
   ignorePatterns: ["node_modules", "build/*", "src/serviceWorker.js"],
+  parser: "babel-eslint",
+  parserOptions: {
+    sourceType: "module",
+    allowImportExportEverywhere: true,
+  },
 };

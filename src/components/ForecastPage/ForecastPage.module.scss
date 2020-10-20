@@ -1,10 +1,10 @@
 @import "./src/scss/variables/colors";
 
-.CityFormBox {
+.Forecast {
   text-align: center;
   box-sizing: border-box;
   max-width: 500px;
-  margin: 0 auto;
-  padding: 0 30px;
+  margin: 20px auto;
+  padding: 30px;
   box-shadow: 0 2px 3px $secondary-text;
 }
