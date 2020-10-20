@@ -1,0 +1,20 @@
+@import "./src/scss/variables/colors";
+
+.Modal {
+  position: fixed;
+  top: 30%;
+  left: 15%;
+  width: 70%;
+  background-color: $primary-color;
+  border: 1px solid $secondary-color;
+  box-shadow: 1px 1px 1px $primary-text;
+  box-sizing: border-box;
+  padding: 16px;
+  transition: all 0.4s ease-out;
+  z-index: 500;
+
+  @media (min-width: 600px) {
+    width: 500px;
+    left: calc(50% - 250px);
+  }
+}

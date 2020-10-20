@@ -2,9 +2,13 @@
 
 .CityFormBox {
   text-align: center;
-  box-sizing: border-box;
-  max-width: 500px;
+  width: 70%;
   margin: 0 auto;
   padding: 0 30px;
   box-shadow: 0 2px 3px $secondary-text;
+
+  @media (min-width: 600px) {
+    width: 500px;
+    left: calc(50% - 250px);
+  }
 }
