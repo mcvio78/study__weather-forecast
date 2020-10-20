@@ -1,6 +1,6 @@
 {
   "hooks": {
     "pre-commit": "lint-staged",
-    "pre-push": "npm check-eslint-config && stylelint-check && check-code"
+    "pre-push": "npm run check-eslint-config && npm run stylelint:check && npm run check-code"
   }
 }

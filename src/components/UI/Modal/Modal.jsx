@@ -5,24 +5,24 @@ import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
 import Backdrop from "../Backdrop/Backdrop";
 
 const modal = (props) => {
-  const { initState, err } = props;
-
   return (
     <Auxiliary>
-      <Backdrop show={err} clicked={initState} />
+      <Backdrop show={props.show} clicked={props.closeModal} />
       <div
         className={classes.Modal}
         style={{
-          transform: err !== null ? "translateY(0)" : "translateY(-100vh)",
-          opacity: err !== null ? "1" : "0",
+          transform: props.show ? "translateY(0)" : "translateY(-100vh)",
+          opacity: props.show ? "1" : "0",
         }}
       >
-        <h3>{err}</h3>
+        {props.children}
       </div>
     </Auxiliary>
   );
 };
 
-export default memo(modal, (prevProps, nextProps) => {
-  return nextProps.err === prevProps.err && nextProps.children === prevProps.children;
-});
+function areEqual(prevProps, nextProps) {
+  return nextProps.show === prevProps.show && nextProps.children === prevProps.children;
+}
+
+export default memo(modal, areEqual);

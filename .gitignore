@@ -1,4 +1,4 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+fre# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
@@ -31,3 +31,6 @@ yarn-error.log*
 *.sln
 *.sw?
 debug.log
+/.firebaserc
+/firebase.json
+/.firebase/

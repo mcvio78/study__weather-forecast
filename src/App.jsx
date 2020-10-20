@@ -4,6 +4,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import classes from "./App.module.scss";
 import Layout from "./hoc/Layout/Layout";
 import SelectionPage from "./containers/SelectionPage/SelectionPage";
+import errorHandlerHoc from "./hoc/errorHandlerHoc/errorHandlerHoc";
+import AxiosForecast from "./request-worker/axios-forecast";
 
 const ForecastPage = lazy(() => {
   return import("../src/components/ForecastPage/ForecastPage");
@@ -27,4 +29,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default errorHandlerHoc(App, AxiosForecast);

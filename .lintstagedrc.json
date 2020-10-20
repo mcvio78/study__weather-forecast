@@ -1,8 +1,7 @@
 {
-  "*.+(js|jsx)": ["eslint --fix \"src/**/*.{js,jsx}\"", "prettier --write src/**/*.{js,jsx}", "git add"],
+  "*.+(js|jsx)": ["eslint --fix \"src/**/*.{js,jsx}\"", "prettier --write src/**/*.{js,jsx}"],
   "*.scss": [
     "stylelint --fix \"src/**/*.scss\"",
-    "prettier --write src/**/*.scss",
-    "git add"
+    "prettier --write src/**/*.scss"
   ]
 }
