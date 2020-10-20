@@ -17,11 +17,11 @@ const fetchInit = () => {
 };
 
 const fetchSucceeded = (state, action) => {
-  return { ...state, ...action.fetchedData };
+  return { ...state, ...action.fetchedData, error: null };
 };
 
 const fetchfailed = (state, action) => {
-  return { ...state, ...action.error };
+  return { ...state, error: action.error.response.data.message };
 };
 
 const forecast = (state = initialState, action) => {
