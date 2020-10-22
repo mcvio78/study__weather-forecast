@@ -1,5 +1,6 @@
 import React from "react";
 
+import PropTypes from "prop-types";
 import classes from "./Header.module.scss";
 
 const Header = (props) => {
@@ -9,6 +10,10 @@ const Header = (props) => {
       <h1>{children}</h1>
     </header>
   );
+};
+
+Header.propTypes = {
+  children: PropTypes.string.isRequired,
 };
 
 export default Header;

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const instance = axios.create({
+const axiosInstance = axios.create({
   baseURL: `http://api.openweathermap.org/data/2.5/forecast?APPID=${process.env.REACT_APP_APPID}`,
   headers: {
     Accept: "application/json",
@@ -9,4 +9,4 @@ const instance = axios.create({
   timeout: 3000,
 });
 
-export default instance;
+export default axiosInstance;

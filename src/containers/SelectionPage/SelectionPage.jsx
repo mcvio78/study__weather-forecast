@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+import PropTypes from "prop-types";
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import Header from "../../components/UI/Header/Header";
 import SelectCityForm from "../../components/SelectCityForm/SelectCityForm";
@@ -9,7 +10,7 @@ import { checkValidity } from "../../shared/utility";
 import * as actionCreators from "../../store/actions/forecast";
 
 const SelectionPage = (props) => {
-  const { st } = props;
+  const { reqStatus, onFetchForecast } = props;
 
   const [selectionState, setSelectionState] = useState({
     city: {
@@ -63,10 +64,10 @@ const SelectionPage = (props) => {
       formData[selectionField] = selectionState[selectionField].value;
     });
 
-    props.onFetchForecast(formData);
+    onFetchForecast(formData);
   };
 
-  const redirect = st.cod === "200" ? <Redirect to="/forecast" /> : null;
+  const redirect = reqStatus === "200" ? <Redirect to="/forecast" /> : null;
 
   return (
     <Auxiliary>
@@ -82,9 +83,18 @@ const SelectionPage = (props) => {
   );
 };
 
+SelectionPage.propTypes = {
+  reqStatus: PropTypes.string,
+  onFetchForecast: PropTypes.func.isRequired,
+};
+
+SelectionPage.defaultProps = {
+  reqStatus: null,
+};
+
 const mapStateToProps = (state) => {
   return {
-    st: state,
+    reqStatus: state.status,
   };
 };
 

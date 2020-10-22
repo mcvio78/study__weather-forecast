@@ -2,65 +2,100 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+import PropTypes from "prop-types";
 import classes from "./ForecastPage.module.scss";
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import Button from "../UI/Button/Button";
 import * as actionCreators from "../../store/actions/forecast";
 
 const ForecastPage = (props) => {
-  const { st } = props;
+  const { reqStatus, forecastDataMap, onClickHomeBtn } = props;
 
   let forecastData = null;
-  if (st.cod === "200") {
+  if (reqStatus === "200") {
     forecastData = (
       <Auxiliary>
-        <h1>{st.city.name}</h1>
-        <p>Weather: {st.list[0].weather[0].description}</p>
-        <p>Date: {st.list[0].dt_txt}</p>
+        <h1>{forecastDataMap.cityName}</h1>
+        <p>Weather: {forecastDataMap.weather}</p>
+        <p>Date: {forecastDataMap.date}</p>
         <p>
-          Temperature: {st.list[0].main.temp}
+          Temperature: {forecastDataMap.temperature}
           <span> &#8451;</span>
         </p>
-        <p>Humidity: {st.list[0].main.humidity} %</p>
-        <p>Pressure: {st.list[0].main.pressure} hPa</p>
+        <p>Humidity: {forecastDataMap.humidity} %</p>
+        <p>Pressure: {forecastDataMap.pressure} hPa</p>
         <p>
-          Temp-Max: {st.list[0].main.temp_max}
+          Temp-Max: {forecastDataMap.tempMax}
           <span> &#8451;</span>
         </p>
         <p>
-          Temp-Min: {st.list[0].main.temp_min}
+          Temp-Min: {forecastDataMap.tempMin}
           <span> &#8451;</span>
         </p>
-        <p>Wind: {st.list[0].wind.speed} m/s</p>
+        <p>Wind: {forecastDataMap.windSpeed} m/s</p>
       </Auxiliary>
     );
   }
 
-  const redirect = st.cod !== "200" ? <Redirect to="/" /> : null;
+  const redirect = reqStatus !== "200" ? <Redirect to="/" /> : null;
 
   const backHomeHandler = () => {
-    props.onClickHome();
+    onClickHomeBtn();
   };
 
   return (
     <div className={classes.Forecast}>
       {forecastData}
       {redirect}
-      <Button clicked={backHomeHandler}>Home</Button>
+      <Button btnType="Success" clicked={backHomeHandler}>
+        Home
+      </Button>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    st: state,
+    reqStatus: state.status,
+    forecastDataMap: state.forecastData,
+    //   {
+    //   cityName: state.forecastData.cityName,
+    //   date: state.forecastData.date,
+    //   temperature: state.forecastData.temperature,
+    //   humidity: state.forecastData.humidity,
+    //   pressure: state.forecastData.pressure,
+    //   tempMax: state.forecastData.tempMax,
+    //   tempMin: state.forecastData.tempMin,
+    //   weather: state.forecastData.weather,
+    //   windSpeed: state.forecastData.windSpeed,
+    // },
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClickHome: () => dispatch(actionCreators.fetchInit()),
+    onClickHomeBtn: () => dispatch(actionCreators.fetchInit()),
   };
+};
+
+ForecastPage.propTypes = {
+  reqStatus: PropTypes.string,
+  forecastDataMap: PropTypes.shape({
+    cityName: PropTypes.string,
+    date: PropTypes.string,
+    temperature: PropTypes.number,
+    humidity: PropTypes.number,
+    pressure: PropTypes.number,
+    tempMax: PropTypes.number,
+    tempMin: PropTypes.number,
+    weather: PropTypes.string,
+    windSpeed: PropTypes.number,
+  }).isRequired,
+  onClickHomeBtn: PropTypes.func.isRequired,
+};
+
+ForecastPage.defaultProps = {
+  reqStatus: null,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ForecastPage);

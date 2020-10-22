@@ -1,11 +1,20 @@
 import React from "react";
 
+import PropTypes from "prop-types";
 import Auxiliary from "../Auxiliary/Auxiliary";
 
-const layout = (props) => (
-  <Auxiliary>
-    <main>{props.children}</main>
-  </Auxiliary>
-);
+const Layout = (props) => {
+  const { children } = props;
 
-export default layout;
+  return (
+    <Auxiliary>
+      <main>{children}</main>
+    </Auxiliary>
+  );
+};
+
+Layout.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default Layout;
